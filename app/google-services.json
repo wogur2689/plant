@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "694027656526",
+    "project_id": "plant-670a2",
+    "storage_bucket": "plant-670a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694027656526:android:7ea3156ce734e287a0d21f",
+        "android_client_info": {
+          "package_name": "com.hyeok.plant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694027656526-eauvfvn75l8jsuoc3edvirlu6qa1ncch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV6RTuP3YgkWiKrnq2ZamWmXqIJ1rdGqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694027656526-eauvfvn75l8jsuoc3edvirlu6qa1ncch.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
