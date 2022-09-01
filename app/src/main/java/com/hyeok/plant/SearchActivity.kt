@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.hyeok.plant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,12 +6,12 @@ import com.example.myapplication.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySearchBinding
+    private val binding by lazy {
+        ActivitySearchBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val intent = intent //화면에서 넘어온 값 받기
