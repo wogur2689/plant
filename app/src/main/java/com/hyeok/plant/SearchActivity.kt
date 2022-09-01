@@ -2,7 +2,7 @@ package com.hyeok.plant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myapplication.databinding.ActivitySearchBinding
+import com.hyeok.plant.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {
 
