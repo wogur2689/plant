@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -15,34 +17,28 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button1.setOnClickListener(View.OnClickListener {
-            Toast.makeText(
-                this,
-                "로그인화면",
-                Toast.LENGTH_LONG
-            ).show()
-        })
-        binding.button2.setOnClickListener(View.OnClickListener {
-            Toast.makeText(
-                this,
-                "검색",
-                Toast.LENGTH_LONG
-            ).show()
-        })
-        binding.button3.setOnClickListener(View.OnClickListener {
-            Toast.makeText(
-                this,
-                "오늘의 식물 추천!",
-                Toast.LENGTH_LONG
-            ).show()
-        })
-        binding.button4.setOnClickListener(View.OnClickListener {
-            Toast.makeText(
-                this,
-                "오늘의 날씨!",
-                Toast.LENGTH_LONG
-            ).show()
-        })
+        binding.button1.setOnClickListener {
+            toast("로그인 화면")
+        }
+        binding.button2.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+        binding.button3.setOnClickListener {
+            toast("오늘의 식물 추천")
+        }
+        binding.button4.setOnClickListener {
+            toast("오늘의 날씨")
+        }
+    }
+
+    /* 공용토스트 */
+    private fun toast(text : String) {
+        Toast.makeText(
+            this,
+            text,
+            Toast.LENGTH_LONG
+        ).show()
     }
 
 }
