@@ -5,20 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.hyeok.plant.databinding.ActivityMainBinding
+import com.hyeok.plant.databinding.ActivitySearchBinding
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : BaseActivity<ActivityMainBinding>({
+    ActivityMainBinding.inflate(it)
+}) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.button1.setOnClickListener {
             toast("로그인 화면")
         }
-        binding.button2.setOnClickListener {
+        binding.searchBtn.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
@@ -28,15 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding.button4.setOnClickListener {
             toast("오늘의 날씨")
         }
-    }
-
-    /* 공용토스트 */
-    private fun toast(text : String) {
-        Toast.makeText(
-            this,
-            text,
-            Toast.LENGTH_LONG
-        ).show()
     }
 
 }
