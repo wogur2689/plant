@@ -57,7 +57,10 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/main_btn"
-                android:elevation="20dp"
+                android:elevation="1000dp"
+                android:outlineAmbientShadowColor="@color/black"
+                android:outlineProvider="bounds"
+                android:outlineSpotShadowColor="@color/black"
                 android:text="오늘의 추천 식물" />
 
             <Button
