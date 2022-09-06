@@ -25,5 +25,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>({
             toast("이미지 검색")
         }
     }
-
 }

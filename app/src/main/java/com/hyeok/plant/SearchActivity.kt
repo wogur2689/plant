@@ -1,11 +1,13 @@
 package com.hyeok.plant
 
 import android.os.Bundle
+import androidx.recyclerview.widget.RecyclerView
 import com.hyeok.plant.databinding.ActivitySearchBinding
 
 class SearchActivity : BaseActivity<ActivitySearchBinding>({
     ActivitySearchBinding.inflate(it)
 }) {
+    val datas = mutableListOf<SearchResultData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,10 +16,22 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>({
         val intent = intent //화면에서 넘어온 값 받기
 
         //검색 버튼 클릭시 검색
+
         binding.search.setOnClickListener {
             toast("검색")
         }
+        initRecycler()
+    }
 
-        binding.searchInput.text
+    private fun initRecycler() {
+        lateinit var searchAdapter: SearchAdapter
+        datas.apply {
+            add(SearchResultData(name = "철수", img = R.drawable.ic_search))
+            add(SearchResultData(name = "영희", img = R.drawable.ic_search))
+            add(SearchResultData(name = "김밥", img = R.drawable.ic_search))
+
+            searchAdapter.datas = datas
+            searchAdapter.notifyDataSetChanged()
+        }
     }
 }
