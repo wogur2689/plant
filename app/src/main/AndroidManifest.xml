@@ -17,7 +17,7 @@
             android:name=".search_result_item"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".search.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

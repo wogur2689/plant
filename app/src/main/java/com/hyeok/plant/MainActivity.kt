@@ -1,11 +1,10 @@
 package com.hyeok.plant
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import com.hyeok.plant.base.BaseActivity
 import com.hyeok.plant.databinding.ActivityMainBinding
-import com.hyeok.plant.databinding.ActivitySearchBinding
+import com.hyeok.plant.search.SearchActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>({
     ActivityMainBinding.inflate(it)

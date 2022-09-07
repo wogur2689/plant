@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hyeok.plant.SearchActivity"
+    tools:context="com.hyeok.plant.search.SearchActivity"
     android:background="@drawable/background">
 
     <LinearLayout
@@ -39,7 +39,8 @@
             android:id="@+id/search_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/search_result_item"/>
 
     </LinearLayout>
 
