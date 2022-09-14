@@ -11,5 +11,7 @@ class BaseDetail : BaseActivity<ActivityDetailBinding>({
         setContentView(binding.root)
 
         val intent = intent //intent받기
+
+
     }
 }

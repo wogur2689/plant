@@ -1,12 +1,15 @@
 package com.hyeok.plant.search
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hyeok.plant.R
+import com.hyeok.plant.base.BaseDetail
 
 class SearchAdapter(var dataSet: ArrayList<SearchResultData>) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
@@ -26,10 +29,18 @@ class SearchAdapter(var dataSet: ArrayList<SearchResultData>) : RecyclerView.Ada
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         private var view: View = v
+
         fun bind(item: SearchResultData) {
             view.findViewById<TextView>(R.id.search_name).text = item.name
             view.findViewById<ImageView>(R.id.search_img).setImageDrawable(item.img)
+            view.findViewById<LinearLayout>(R.id.search_card).setOnClickListener {
+                    Intent(view.context.applicationContext, BaseDetail::class.java).apply {
+                        putExtra("data", item)
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }.run { view.context.applicationContext.startActivity(this) }
+            }
         }
+
     }
 }
 
