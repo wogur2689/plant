@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.hyeok.plant.R
 import com.hyeok.plant.base.BaseDetail
 
@@ -32,7 +33,7 @@ class SearchAdapter(var dataSet: ArrayList<SearchResultData>) : RecyclerView.Ada
 
         fun bind(item: SearchResultData) {
             view.findViewById<TextView>(R.id.search_name).text = item.name
-            view.findViewById<ImageView>(R.id.search_img).setImageDrawable(item.img)
+            Glide.with(view).load(item.img).into(view.findViewById(R.id.search_img))
             view.findViewById<LinearLayout>(R.id.search_card).setOnClickListener {
                     Intent(view.context.applicationContext, BaseDetail::class.java).apply {
                         putExtra("data", item)

@@ -54,9 +54,9 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>({
             }
         })
 
-        data.add(SearchResultData(keyword, ContextCompat.getDrawable(this, R.drawable.ic_search)!!, "특징1"))
-        data.add(SearchResultData(keyword, ContextCompat.getDrawable(this, R.drawable.ic_search)!!, "특징1"))
-        data.add(SearchResultData(keyword, ContextCompat.getDrawable(this, R.drawable.ic_search)!!, "특징1"))
+        data.add(SearchResultData(keyword, R.drawable.ic_search, "특징10"))
+        data.add(SearchResultData(keyword, R.drawable.ic_search, "특징20"))
+        data.add(SearchResultData(keyword, R.drawable.ic_search, "특징30"))
 
         val searchAdapter = SearchAdapter(data)
         binding.searchResult.adapter = searchAdapter
