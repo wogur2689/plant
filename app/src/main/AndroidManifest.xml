@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hyeok.plant">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/> <!-- 오디오 권한 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!--카메라 권한-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 갤러리 쓰기 권한 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 갤러리 읽기 권한 -->
+
+    <uses-feature android:name="android.hardware.camera2" android:required="false"/> <!--카메라 기능 [필수는 아니라서 false]-->
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".imgSearch.ImgSearchActivity"
+            android:exported="false" />
         <activity
             android:name=".base.BaseDetail"
             android:exported="false" />
