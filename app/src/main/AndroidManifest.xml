@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 갤러리 쓰기 권한 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 갤러리 읽기 권한 -->
 
-    <uses-feature android:name="android.hardware.camera2" android:required="false"/> <!--카메라 기능 [필수는 아니라서 false]-->
+    <uses-feature android:name="android.hardware.camera" android:required="true"/> <!--카메라 기능 [필수는 아니라서 false]-->
 
     <application
         android:allowBackup="true"

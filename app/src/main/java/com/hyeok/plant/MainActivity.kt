@@ -2,7 +2,6 @@ package com.hyeok.plant
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.hardware.camera2.CameraDevice
 import android.os.Bundle
 import com.hyeok.plant.base.BaseActivity
 import com.hyeok.plant.databinding.ActivityMainBinding
@@ -24,15 +23,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>({
             startActivity(intent)
         }
         binding.imgSearchBtn.setOnClickListener {
-            if(checkCameraHardware()) {
+           /* if(checkCameraHardware()) {
                 toast("기기에 카메라가 있어야 사용이 가능합니다!")
                 return@setOnClickListener
-            }
+            }*/
 
-            if(getCameraInstance() == null) {
-                toast("카메라를 사용할 수 없습니다.")
-                return@setOnClickListener
-            }
+            //if(getCameraInstance() == null) {
+              //  toast("카메라를 사용할 수 없습니다.")
+            //    return@setOnClickListener
+            //}
 
             val intent = Intent(this, ImgSearchActivity::class.java)
             startActivity(intent)
@@ -40,16 +39,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>({
     }
 
     /* 기기에 카메라가 있는지 체크 */
-    fun checkCameraHardware(): Boolean {
+    /*private fun checkCameraHardware(): Boolean {
         return packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)
-    }
+    }*/
 
     /* 카메라 사용 권한 요청 */
-    private fun getCameraInstance(): CameraDevice? {
-        return try {
-            CameraDevice.
+    /*private fun getCameraInstance(): CameraDevice? {
+        /*return try {
+
         } catch (e: Exception) {
             null
-        }
-    }
+        }*/
+    }*/
 }
