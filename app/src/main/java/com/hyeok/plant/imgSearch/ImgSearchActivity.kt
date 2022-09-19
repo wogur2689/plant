@@ -1,20 +1,16 @@
 package com.hyeok.plant.imgSearch
 
 import android.Manifest
-import android.R
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Toast
 import androidx.camera.core.ImageCapture
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.hyeok.plant.base.BaseActivity
 import com.hyeok.plant.databinding.ActivityImgsearchBinding
-import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
