@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".imgSearch.ImgSearchActivity">
+    tools:context=".imgSearch.PreviewActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,17 +20,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/container"
+        <ImageView
+            android:id="@+id/capture_img"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <androidx.camera.view.PreviewView
-                android:id="@+id/preview_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </FrameLayout>
+        </ImageView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,13 +36,13 @@
             android:layout_marginBottom="10dp">
 
             <Button
-                android:id="@+id/btn_camera"
+                android:id="@+id/btn_replay"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/main_btn"
                 android:layout_marginEnd="5dp"
-                android:text="카메라" />
+                android:text="다시 캡쳐"/>
 
             <Button
                 android:id="@+id/btn_search"
