@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import kotlin.concurrent.thread
 
 /** Helper type alias used for analysis use case callbacks */
 typealias LumaListener = (luma: Double) -> Unit
@@ -28,7 +29,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
 }) {
     private var imageCapture: ImageCapture? = null //캡쳐
     private lateinit var cameraExecutor: ExecutorService
-    private lateinit var imageName: String
+    private var imageName: String = "null"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,9 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
 
         /* 촬영후 프리뷰 사진 보여주기 이동*/
         binding.btnCamera.setOnClickListener {
-            takePhoto()
+            thread(start = true){
+                takePhoto()
+            }
             val intent = Intent(this, PreviewActivity::class.java)
             intent.putExtra("image", imageName)
             startActivity(intent)
