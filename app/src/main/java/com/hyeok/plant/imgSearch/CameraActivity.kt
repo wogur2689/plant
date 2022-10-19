@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import kotlin.concurrent.thread
 
 /** Helper type alias used for analysis use case callbacks */
 typealias LumaListener = (luma: Double) -> Unit
@@ -45,9 +44,8 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
 
         /* 촬영후 프리뷰 사진 보여주기 이동*/
         binding.btnCamera.setOnClickListener {
-            thread(start = true){
-                takePhoto()
-            }
+            takePhoto()
+            Log.d("plant","이미지 : $imageName")
             val intent = Intent(this, PreviewActivity::class.java)
             intent.putExtra("image", imageName)
             startActivity(intent)
@@ -148,7 +146,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                    toast("캡쳐를 실패했습니다.")
+                    toast("$exc.message")
                 }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults){
                     Log.d(TAG, "Photo capture succeed: ${output.savedUri}")
@@ -192,8 +190,8 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
     }
 
     companion object {
-        private const val TAG = "plantApp"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private const val TAG = "plant"
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS =
             arrayOf (

@@ -31,26 +31,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_replay"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/main_btn"
-                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
                 android:text="다시 캡쳐"/>
 
             <Button
                 android:id="@+id/btn_search"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/main_btn"
-                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="검색" />
         </LinearLayout>
 
