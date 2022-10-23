@@ -28,7 +28,6 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
 }) {
     private var imageCapture: ImageCapture? = null //캡쳐
     private lateinit var cameraExecutor: ExecutorService
-    private var imageName: String = "null"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +43,12 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
 
         /* 촬영후 프리뷰 사진 보여주기 이동*/
         binding.btnCamera.setOnClickListener {
-            takePhoto()
+            var imageName : String = takePhoto("null")
             Log.d("plant","이미지 : $imageName")
+            if(imageName == "null") {
+                toast("시스템 오류입니다.")
+                return@setOnClickListener
+            }
             val intent = Intent(this, PreviewActivity::class.java)
             intent.putExtra("image", imageName)
             startActivity(intent)
@@ -115,9 +118,10 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
     }
 
     //이미지 캡쳐
-    private fun takePhoto() {
+    private fun takePhoto(data : String) : String {
+        var reuslt = data
         // Get a stable reference of the modifiable image capture use case
-        val imageCapture = imageCapture ?: return
+        val imageCapture = imageCapture ?: return "null"
 
         // Create time stamped name and MediaStore entry.
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
@@ -127,7 +131,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/plant")
-                imageName = name
+                reuslt = name
             }
         }
 
@@ -154,6 +158,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
                 }
             }
         )
+        return reuslt
     }
 
     /* 사진 광도 분석기 */
