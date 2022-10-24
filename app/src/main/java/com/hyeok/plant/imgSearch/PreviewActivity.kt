@@ -24,13 +24,13 @@ class PreviewActivity : BaseActivity<ActivityPreviewBinding> ({
 
         //다시 캡쳐
         binding.btnReplay.setOnClickListener {
-            val intent = Intent(this, CameraActivity::class.java)
-            startActivity(intent)
+            val intent1 = Intent(this, CameraActivity::class.java)
+            startActivity(intent1)
         }
         //이미지로 검색하기
         binding.btnSearch.setOnClickListener {
-            val intent = Intent(this, ImgSearchActivity::class.java)
-            startActivity(intent)
+            val intent2 = Intent(this, ImgSearchActivity::class.java)
+            startActivity(intent2)
         }
     }
 

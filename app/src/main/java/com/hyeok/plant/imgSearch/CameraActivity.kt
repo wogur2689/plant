@@ -28,6 +28,8 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
 }) {
     private var imageCapture: ImageCapture? = null //캡쳐
     private lateinit var cameraExecutor: ExecutorService
+    private var captureResult : Boolean = true
+    private var imageName : String = "null"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,22 +42,31 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
+        cameraExecutor = Executors.newSingleThreadExecutor()
 
         /* 촬영후 프리뷰 사진 보여주기 이동*/
         binding.btnCamera.setOnClickListener {
-            var imageName : String = takePhoto("null")
-            Log.d("plant","이미지 : $imageName")
-            if(imageName == "null") {
-                toast("시스템 오류입니다.")
-                return@setOnClickListener
-            }
-            val intent = Intent(this, PreviewActivity::class.java)
-            intent.putExtra("image", imageName)
-            startActivity(intent)
-        }
+            object : Thread() {
+                override fun run() {
+                    if (captureResult) {
+                        imageName = takePhoto()
+                        binding.btnCamera.text = "가져오기!"
+                        if(imageName != "null") captureResult = false
+                        return
+                    }
+                }
+            }.start()
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
+            if(!captureResult) {
+                Log.d("plant", "이미지 : $imageName")
+                cameraExecutor.shutdown()
+                val intent = Intent(this, PreviewActivity::class.java)
+                intent.putExtra("image", imageName)
+                startActivity(intent)
+            }
+        }
     }
+
 
     /* 카메라 사용권한 요청*/
     override fun onRequestPermissionsResult(
@@ -118,8 +129,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
     }
 
     //이미지 캡쳐
-    private fun takePhoto(data : String) : String {
-        var reuslt = data
+    private fun takePhoto() : String {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return "null"
 
@@ -131,7 +141,6 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/plant")
-                reuslt = name
             }
         }
 
@@ -158,7 +167,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>({
                 }
             }
         )
-        return reuslt
+        return name
     }
 
     /* 사진 광도 분석기 */
