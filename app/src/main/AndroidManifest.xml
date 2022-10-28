@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라 권한 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 갤러리 쓰기 권한 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 갤러리 읽기 권한 -->
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- 인터넷 사용 허가 -->
     <uses-feature android:name="android.hardware.camera.any" />
 
     <application

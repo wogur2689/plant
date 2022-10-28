@@ -21,15 +21,35 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
-            android:id="@+id/container"
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.254">
 
-            <androidx.camera.view.PreviewView
-                android:id="@+id/preview_img"
+            <WebView
+                android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+            </WebView>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
         </FrameLayout>
 
         <LinearLayout
@@ -49,13 +69,13 @@
                 android:text="카메라" />
 
             <Button
-                android:id="@+id/btn_search"
+                android:id="@+id/btn_main"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/main_btn"
                 android:layout_marginStart="5dp"
-                android:text="검색" />
+                android:text="메인으로" />
         </LinearLayout>
 
     </LinearLayout>
