@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.hyeok.plant.base.BaseActivity
 import com.hyeok.plant.R
@@ -18,19 +19,11 @@ import com.hyeok.plant.databinding.ActivitySearchBinding
 class SearchActivity : BaseActivity<ActivitySearchBinding>({
     ActivitySearchBinding.inflate(it)
 }) {
-    private lateinit var database: DatabaseReference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val intent = intent //화면에서 넘어온 값 받기
-        database = Firebase.database.reference //데이터베이스 인스턴스 가져오기
-
-        database.setValue("데이터1")
-        database.setValue("데이터2")
-        database.setValue("데이터3")
-
-        toast("돋보기를 누르면 검색됩니다!")
+        toast("이름을 입력하고 돋보기를 누르면 검색됩니다!")
         //검색 버튼 클릭시 검색
         binding.search.setOnClickListener {
             toast("검색")
@@ -40,25 +33,27 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>({
     }
 
     private fun initRecycler(keyword: String) {
-        //이제 DB에서 데이터 가져와서 하면 끝
-        val data = arrayListOf<SearchResultData>()
+        var datas = arrayListOf<SearchResultData>()
+        val db = Firebase.firestore //데이터베이스 초기화
+        //db에서 검색
 
-        database.addValueEventListener(object  : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.getValue<String>()
-                Log.d(TAG, "value is: $value")
+        db.collection("plant")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    if(document.id.equals(keyword)) {
+                        datas.add(SearchResultData(document.get("name") as String,
+                            (document.get("img").toString()).toInt(),
+                            document.get("characteristic") as String
+                        ))
+                    }
+                }
+                val searchAdapter = SearchAdapter(datas)
+                binding.searchResult.adapter = searchAdapter
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "Failed to read value.", error.toException())
+            .addOnFailureListener { exception ->
+                toast("시스템 오류입니다. 다시 입력후 검색해주세요.")
+                Log.w(TAG, "Error getting documents.", exception)
             }
-        })
-
-        data.add(SearchResultData(keyword, R.drawable.ic_search, "특징10"))
-        data.add(SearchResultData(keyword, R.drawable.ic_search, "특징20"))
-        data.add(SearchResultData(keyword, R.drawable.ic_search, "특징30"))
-
-        val searchAdapter = SearchAdapter(data)
-        binding.searchResult.adapter = searchAdapter
     }
 }
